@@ -9,6 +9,8 @@
 
 # Precompiled Headers
 *.gch
+*.vscode
+*.cph
 *.pch
 
 # Compiled Dynamic libraries
@@ -29,4 +31,5 @@
 # Executables
 *.exe
 *.out
+*.bin
 *.app
