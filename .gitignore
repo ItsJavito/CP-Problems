@@ -11,6 +11,7 @@
 *.gch
 *.vscode
 *.cph
+*/varios
 *.pch
 
 # Compiled Dynamic libraries
