@@ -7,7 +7,7 @@ int getTotalX(vector<int> a, vector<int> b)
     int inicio = a[a.size()-1];
     int fin = b[0];
     int ans = 0 ;
-
+    
     for (int i = inicio; i <= fin; i++)
     {
         int cont = 0 ;
@@ -25,7 +25,6 @@ int main(int argc, char const *argv[])
 {
     vector<int> a = {2,4};
     vector<int> b = {16,32,96};
-
     int ans = getTotalX(a,b);
     cout << ans << endl;
     return 0;

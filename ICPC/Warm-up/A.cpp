@@ -7,7 +7,7 @@ using namespace std;
 #define endl "\n"
 #define ll long long
 typedef vector<int> vi;
- 
+
 int main() {
     fastio;
     int n , sum = 0 , cont = 0;;
@@ -40,6 +40,5 @@ int main() {
     }else{
         cout << "N" << endl;
     }
-
     return 0;
 }
