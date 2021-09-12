@@ -31,24 +31,22 @@ typedef vector<vl> vvl;
 const int mod = 1'000'000'007;
 const int N = 3e5;
 
+vi alph (26, 0);
+
 int main() {
     fastio;
-    int n , dif , max = INT_MIN, min = INT_MAX; cin >> n;
-    ll cantmin = 0, cantMax= 0 , cant;
-    vi ar(n);
-    for(auto &c: ar){
-        cin >> c;
-        max = std::max(max , c);
-        min = std::min(min , c);
+    string s; cin >> s;
+    for(int i = 0 ; i < s.size() ; i++){
+        alph[s[i] - 'a']++;
     }
-    dif = max - min;
-    for(auto &c : ar){
-        cantmin += c == min ? 1 : 0;
-        cantMax += c == max ? 1 : 0;
+    int odd = 0;
+    for(int i = 0; i < 26; i++){
+        if(alph[i] & 1) odd++;
     }
-    if(min != max) cant = cantmin*cantMax;
-    else cant = (1LL*n*(n-1))/2; // poner 1LL para que no sea overflow xd   
-    cout << dif << " " << cant << endl; 
-
+    if(odd == 0 || odd & 1){
+        cout << "First" << endl;
+    }else{
+        cout << "Second" << endl;
+    }
     return 0;
 }

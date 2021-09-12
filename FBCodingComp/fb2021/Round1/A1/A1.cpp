@@ -31,24 +31,28 @@ typedef vector<vl> vvl;
 const int mod = 1'000'000'007;
 const int N = 3e5;
 
+void solution() {
+    int n , ans = 0; string s ; char hand = '0';
+    cin >> n >> s;
+    FOR(i, n){
+        if(s[i] == 'F') continue;
+        if(hand == '0'){
+            hand = s[i];
+        }
+        if(hand != s[i]){
+            ans++;
+            hand = s[i];
+        }
+    }
+    cout << ans << endl;
+}
 int main() {
     fastio;
-    int n , dif , max = INT_MIN, min = INT_MAX; cin >> n;
-    ll cantmin = 0, cantMax= 0 , cant;
-    vi ar(n);
-    for(auto &c: ar){
-        cin >> c;
-        max = std::max(max , c);
-        min = std::min(min , c);
+    int t, n = 1;
+    cin >> t;
+    while(t--) {
+        cout << "Case #" << n++ << ": "; 
+        solution();
     }
-    dif = max - min;
-    for(auto &c : ar){
-        cantmin += c == min ? 1 : 0;
-        cantMax += c == max ? 1 : 0;
-    }
-    if(min != max) cant = cantmin*cantMax;
-    else cant = (1LL*n*(n-1))/2; // poner 1LL para que no sea overflow xd   
-    cout << dif << " " << cant << endl; 
-
     return 0;
 }

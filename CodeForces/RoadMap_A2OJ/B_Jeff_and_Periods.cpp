@@ -32,23 +32,35 @@ const int mod = 1'000'000'007;
 const int N = 3e5;
 
 int main() {
-    fastio;
-    int n , dif , max = INT_MIN, min = INT_MAX; cin >> n;
-    ll cantmin = 0, cantMax= 0 , cant;
-    vi ar(n);
-    for(auto &c: ar){
-        cin >> c;
-        max = std::max(max , c);
-        min = std::min(min , c);
+    fastio;                  //lp , dif , firstTime
+    map<int, pair<int, int>> map;
+    vector<bool> notx(1e5);
+    int n; cin >> n;
+    FOR(i , n){
+        int lp, dif;
+        int num; cin >> num;
+        if(notx[num]) continue;
+        //si no está en el map
+        if(map.find(num) == map.end()) {map[num] = {i, 0 }; continue;};
+
+        lp = map[num].F; dif = map[num].S;
+        //si el dif es 0 y se encontró otra ocurrencia
+        if(dif == 0){
+            dif = i - lp;
+            map[num] = {i , dif };
+            continue;
+        }
+        else if(dif != i-lp){
+            map.erase(num);
+            notx[num] = true;
+        }else if(dif == i - lp){
+            map[num] = {i, dif };
+        }
     }
-    dif = max - min;
-    for(auto &c : ar){
-        cantmin += c == min ? 1 : 0;
-        cantMax += c == max ? 1 : 0;
+    cout << map.size() << endl;
+    for( auto &c : map){
+        cout << c.first << " " << c.S.S<< endl;
     }
-    if(min != max) cant = cantmin*cantMax;
-    else cant = (1LL*n*(n-1))/2; // poner 1LL para que no sea overflow xd   
-    cout << dif << " " << cant << endl; 
 
     return 0;
 }

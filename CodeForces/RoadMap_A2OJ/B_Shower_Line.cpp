@@ -33,22 +33,20 @@ const int N = 3e5;
 
 int main() {
     fastio;
-    int n , dif , max = INT_MIN, min = INT_MAX; cin >> n;
-    ll cantmin = 0, cantMax= 0 , cant;
-    vi ar(n);
-    for(auto &c: ar){
-        cin >> c;
-        max = std::max(max , c);
-        min = std::min(min , c);
+    int ans = 0;
+    vi ar = {0,1,2,3,4};
+    vvi g(5, vi(5,0));
+    FOR(i , 5){
+        FOR(j , 5){
+            cin >> g[i][j];
+        }
     }
-    dif = max - min;
-    for(auto &c : ar){
-        cantmin += c == min ? 1 : 0;
-        cantMax += c == max ? 1 : 0;
-    }
-    if(min != max) cant = cantmin*cantMax;
-    else cant = (1LL*n*(n-1))/2; // poner 1LL para que no sea overflow xd   
-    cout << dif << " " << cant << endl; 
-
+    do{
+        int sum = (g[ar[0]][ar[1]] + g[ar[1]][ar[0]] + g[ar[3]][ar[2]] + g[ar[2]][ar[3]]) + 
+                  (g[ar[1]][ar[2]] + g[ar[2]][ar[1]] + g[ar[3]][ar[4]] + g[ar[4]][ar[3]]) +
+                  (g[ar[2]][ar[3]] + g[ar[3]][ar[2]]) + (g[ar[3]][ar[4]] + g[ar[4]][ar[3]]);
+        ans = max(ans, sum);
+    }while(next_permutation(all(ar)));
+    cout << ans << endl;
     return 0;
 }

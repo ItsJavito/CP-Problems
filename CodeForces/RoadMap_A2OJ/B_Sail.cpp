@@ -33,22 +33,27 @@ const int N = 3e5;
 
 int main() {
     fastio;
-    int n , dif , max = INT_MIN, min = INT_MAX; cin >> n;
-    ll cantmin = 0, cantMax= 0 , cant;
-    vi ar(n);
-    for(auto &c: ar){
-        cin >> c;
-        max = std::max(max , c);
-        min = std::min(min , c);
+    int n , sx , sy , ux , uy , cont = 0;
+    cin >> n >> sx >> sy >> ux >> uy;
+    int dx = sx - ux , dy = sy - uy;
+    FOR(i , n){
+        char c; cin >> c;
+        if(c == 'E' && dx < 0){
+            dx++;
+        }else if(c == 'W' && dx > 0){
+            dx--;
+        }
+        else if(c == 'N' && dy < 0){
+            dy++;
+        }else if(c == 'S' && dy > 0){
+            dy--;
+        }
+        cont++;
+        if(dx == 0 && dy == 0){
+            cout << cont << endl;
+            exit(0); 
+        }
     }
-    dif = max - min;
-    for(auto &c : ar){
-        cantmin += c == min ? 1 : 0;
-        cantMax += c == max ? 1 : 0;
-    }
-    if(min != max) cant = cantmin*cantMax;
-    else cant = (1LL*n*(n-1))/2; // poner 1LL para que no sea overflow xd   
-    cout << dif << " " << cant << endl; 
-
+    cout << -1 << endl;
     return 0;
 }

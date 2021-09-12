@@ -31,24 +31,33 @@ typedef vector<vl> vvl;
 const int mod = 1'000'000'007;
 const int N = 3e5;
 
+
+void solution() {
+    int n; string s;
+    ll ans = 0;
+    cin >> n >> s;
+    FOR(i ,n){
+        ll c1 = 0, c2 = 0;
+        int f1 = 0 , f2 = 0;
+        for(int j = i ; j < s.size(); j++){
+            if(f1 == 0 && s[j] == 'O') f1 = 1 , c1++;
+            if(f1 == 1 && s[j] == 'X') f1 = 0, c1++;
+            if(f2 == 0 && s[j] == 'X') f2 = 1,  c2++;
+            if(f2 == 1 && s[j] == 'O') f2 = 0, c2++;
+            ll temp = min(c1,c2);
+            ans += temp;
+            ans %= mod;
+        }
+    }
+    cout << ans << endl;
+}
 int main() {
     fastio;
-    int n , dif , max = INT_MIN, min = INT_MAX; cin >> n;
-    ll cantmin = 0, cantMax= 0 , cant;
-    vi ar(n);
-    for(auto &c: ar){
-        cin >> c;
-        max = std::max(max , c);
-        min = std::min(min , c);
+    int t, n = 1;
+    cin >> t;
+    while(t--) {
+        cout << "Case #" << n++ << ": "; 
+        solution();
     }
-    dif = max - min;
-    for(auto &c : ar){
-        cantmin += c == min ? 1 : 0;
-        cantMax += c == max ? 1 : 0;
-    }
-    if(min != max) cant = cantmin*cantMax;
-    else cant = (1LL*n*(n-1))/2; // poner 1LL para que no sea overflow xd   
-    cout << dif << " " << cant << endl; 
-
     return 0;
 }
